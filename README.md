@@ -1,5 +1,7 @@
 # Spotiapp
 
+Angular application that uses the Spotify api to display and listen the new songs added to the spotify platform
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
 
 ## Development server
