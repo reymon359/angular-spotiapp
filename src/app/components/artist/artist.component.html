@@ -1,4 +1,6 @@
-<div class="row">
+<app-loading *ngIf="loadingArtist"></app-loading>
+
+<div class="row animated fadeIn" *ngIf="!loadingArtist">
     <div class="col-2">
         <img [src]="artist.images | noimage" class="img-thumbnail img-circle">
     </div>
@@ -6,7 +8,7 @@
         <h3>{{artist.name}}</h3>
         <p>
             <a [href]="artist.external_urls.spotify" target="_blank"> Artist page</a>
-           
+
         </p>
 
     </div>
