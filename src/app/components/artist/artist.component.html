@@ -22,22 +22,26 @@
 
 <div class="row m-5">
     <div class="col">
-        <table class="table">
+        <table class="table" style="color: white!important">
             <thead>
                 <tr>
                     <th>Photo</th>
-                    <th>Album</th>
                     <th>Song</th>
+                    <th>Album</th>
                     <th>Preview</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr *ngFor="let track of topTracks">
+                    <td>
+                        <img [src]="track.album.images | noimage" class="img-thumb">
+                    </td>
+                    <td>{{track.name}}</td>
+                    <td>{{track.album.name}}</td>
+                    <td>
+                        <audio [src]="track.preview_url" controls></audio>
+                    </td>
                 </tr>
             </tbody>
 
