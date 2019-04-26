@@ -15,6 +15,9 @@ import { ROUTES } from './app.routes';
 
 // Pipes
 import { NoimagePipe } from './pipes/noimage.pipe';
+import { SecuredomPipe } from './pipes/securedom.pipe';
+
+
 import { CardsComponent } from './components/cards/cards.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 
@@ -27,6 +30,7 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     ArtistComponent,
     NavbarComponent,
     NoimagePipe,
+    SecuredomPipe,
     CardsComponent,
     LoadingComponent
   ],
