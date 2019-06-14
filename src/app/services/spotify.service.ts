@@ -10,7 +10,7 @@ export class SpotifyService {
 
   token = '';
   tokenDate = null;
-
+  firstRequest= true;
   constructor(private http: HttpClient, private router: Router) {
     // this.getToken();
     // this.checkToken();
@@ -38,7 +38,7 @@ export class SpotifyService {
   }
 
   checkToken() {
-    const actualTime = new Date();
+    const actualTime: any = new Date();
     const secs = new Date(actualTime - this.tokenDate).getTime();
     console.log(secs);
 

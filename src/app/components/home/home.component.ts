@@ -9,21 +9,22 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class HomeComponent implements OnInit {
 
   newReleases: any[] = [];
-  loading: boolean = false;
+  loading = false;
 
   error: boolean;
   errorMessage: string;
 
-  constructor(private spotifyService: SpotifyService) {
+  constructor(public spotifyService: SpotifyService) {
     // this.loading = true;
     this.error = false;
-    // this.getNewReleases();
-  
+    this.spotifyService.checkToken();
+    if (!this.spotifyService.firstRequest ) {console.log('geting new'); this.getNewReleases();  }
  
 
   }
 
   getNewReleases(){
+    this.spotifyService.firstRequest = false;
     this.spotifyService.getNewReleases()
     .subscribe((data: any) => {
       this.newReleases = data;
