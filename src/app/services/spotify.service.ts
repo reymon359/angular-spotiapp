@@ -41,7 +41,7 @@ export class SpotifyService {
   }
 
   getNewReleases() {
-    return this.getQuery('browse/new-releases?limit=20')
+    return this.getQuery('browse/new-releases?limit=40')
       .pipe(map(data => data['albums'].items));
   }
 
