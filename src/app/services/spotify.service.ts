@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -9,10 +9,12 @@ import { map } from 'rxjs/operators';
 export class SpotifyService {
 
   token = '';
-  tokenTime = null;
+  tokenDate = null;
 
-  constructor(private http: HttpClient) {
-    this.getToken();
+  constructor(private http: HttpClient, private router: Router) {
+    // this.getToken();
+    // this.checkToken();
+
   }
 
   getToken() {
@@ -21,7 +23,8 @@ export class SpotifyService {
       this.http.get(url).subscribe((data: any) => {
         this.token = data.access_token;
         if (this.token !== '') {
-          this.tokenTime = new Date();
+          this.tokenDate = new Date();
+          console.log('token got');
           resolve();
         } else {
           reject();
@@ -33,20 +36,29 @@ export class SpotifyService {
 
 
   }
-  
-  checkToken(){
-    if(this.tokenTime === null)
-    
+
+  checkToken() {
+    const actualTime = new Date();
+    const secs = new Date(actualTime - this.tokenDate).getTime();
+    console.log(secs);
+
+    if (secs > 3550000) {
+      console.log('lets get token');
+      this.getToken();
+    }
   }
 
 
   getQuery(query: string) {
     this.checkToken();
+
+
     const url = `https://api.spotify.com/v1/${query}`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`
     });
     return this.http.get(url, { headers });
+
   }
 
   getNewReleases() {
