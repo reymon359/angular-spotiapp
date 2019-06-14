@@ -1,13 +1,13 @@
 <app-loading *ngIf="loadingArtist"></app-loading>
 
-<div class="row animated fadeIn" *ngIf="!loadingArtist">
+<div class="row animated fadeIn mt-5" *ngIf="!loadingArtist">
     <div class="col-2">
         <img [src]="artist.images | noimage" class="img-thumbnail img-circle">
     </div>
     <div class="col">
-        <h3>{{artist.name}}</h3>
+        <h3 class=" text-white">{{artist.name}}</h3>
         <p>
-            <a [href]="artist.external_urls.spotify" target="_blank"> Artist page</a>
+            <a class=" text-white" [href]="artist.external_urls.spotify" target="_blank"> Artist page</a>
 
         </p>
 

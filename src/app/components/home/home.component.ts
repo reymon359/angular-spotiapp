@@ -9,15 +9,15 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class HomeComponent implements OnInit {
 
   newReleases: any[] = [];
-  loading: boolean;
+  loading: boolean = false;
 
   error: boolean;
   errorMessage: string;
 
   constructor(private spotifyService: SpotifyService) {
-    this.loading = true;
+    // this.loading = true;
     this.error = false;
-    this.getNewReleases();
+    // this.getNewReleases();
   
  
 
