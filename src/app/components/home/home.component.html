@@ -1,10 +1,4 @@
 <app-loading *ngIf="loading"></app-loading>
-<div class="alert alert-danger animated fadeIn">
-    <h3>Error</h3>
-    <p>To do: implement the get spotify token in my server like this
-        <a href="https://github.com/Klerith/spotify-get-token">https://github.com/Klerith/spotify-get-token</a>
-    </p>
-</div>
 <div *ngIf="error" class="alert alert-danger animated fadeIn">
     <h3>Error</h3>
     <p>{{ errorMessage}}</p>
