@@ -8,13 +8,20 @@ import { map } from 'rxjs/operators';
 })
 export class SpotifyService {
 
+  token = '';
+
   constructor(private http: HttpClient) {
+    this.getToken();
+  }
+
+  getToken(){
+
   }
 
   getQuery(query: string) {
     const url = `https://api.spotify.com/v1/${query}`;
     const headers = new HttpHeaders({
-      Authorization: 'Bearer BQBffRSSEDUa8OokMfXs-8CW3mj0PwWu4OxRjjVDsjLrUKykStZXGzwYyXFYmH2YcgIqqNe6px7ygVgSRc4'
+      Authorization: `Bearer ${this.token}`
     });
     return this.http.get(url, { headers });
   }
