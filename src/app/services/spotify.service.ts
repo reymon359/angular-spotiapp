@@ -9,9 +9,10 @@ import { map } from 'rxjs/operators';
 export class SpotifyService {
 
   token = '';
+  tokenTime = null;
 
   constructor(private http: HttpClient) {
-    // this.getToken();
+    this.getToken();
   }
 
   getToken() {
@@ -20,6 +21,7 @@ export class SpotifyService {
       this.http.get(url).subscribe((data: any) => {
         this.token = data.access_token;
         if (this.token !== '') {
+          this.tokenTime = new Date();
           resolve();
         } else {
           reject();
@@ -31,8 +33,15 @@ export class SpotifyService {
 
 
   }
+  
+  checkToken(){
+    if(this.tokenTime === null)
+    
+  }
+
 
   getQuery(query: string) {
+    this.checkToken();
     const url = `https://api.spotify.com/v1/${query}`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`
@@ -46,6 +55,7 @@ export class SpotifyService {
   }
 
   getArtists(term: string) {
+    console.log(this.token);
     return this.getQuery(`search?q=${term}&type=artist&limit=15`)
       .pipe(map(data => data['artists'].items));
   }

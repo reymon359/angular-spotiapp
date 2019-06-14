@@ -17,16 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(private spotifyService: SpotifyService) {
     this.loading = true;
     this.error = false;
-    // Checkin if there is a token
-    if (this.spotifyService.token === '') {
-      this.spotifyService.getToken().then(() => this.getNewReleases())
-      .catch((error) => {
-      this.error = true;
-      this.errorMessage = error;
-      });
-    } else {
-      this.getNewReleases();
-    }
+    this.getNewReleases();
+  
  
 
   }
