@@ -11,16 +11,25 @@ export class SpotifyService {
   token = '';
 
   constructor(private http: HttpClient) {
-    this.getToken();
+    // this.getToken();
   }
 
   getToken() {
-    console.log('enters get token');
     const url = `http://localhost:3000/spotify`;
-
-    return this.http.get(url) .subscribe((data: any) => {
-      console.log(data);
+    const promise1 = new Promise((resolve, reject) => {
+      this.http.get(url).subscribe((data: any) => {
+        this.token = data.access_token;
+        if (this.token !== '') {
+          resolve();
+        } else {
+          reject();
+        }
+      });
     });
+
+    return promise1;
+
+
   }
 
   getQuery(query: string) {
