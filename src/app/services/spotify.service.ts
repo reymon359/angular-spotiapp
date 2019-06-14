@@ -14,8 +14,13 @@ export class SpotifyService {
     this.getToken();
   }
 
-  getToken(){
+  getToken() {
+    console.log('enters get token');
+    const url = `http://localhost:3000/spotify`;
 
+    return this.http.get(url) .subscribe((data: any) => {
+      console.log(data);
+    });
   }
 
   getQuery(query: string) {
