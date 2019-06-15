@@ -10,15 +10,18 @@ export class SpotifyService {
 
   token = '';
   tokenDate = null;
-  firstRequest= true;
+  firstRequest = true;
   constructor(private http: HttpClient, private router: Router) {
-    // this.getToken();
-    // this.checkToken();
+    }
 
-  }
+
 
   getToken() {
-    const url = `http://localhost:3000/spotify`;
+
+    const clientId = 'YOUR_CLIENT_ID';
+    const clientSecret = 'YOUR_SECRET_ID';
+
+    const url = `https://reymon359-spotify-token.herokuapp.com/spotify/${clientId}/${clientSecret}`;
     const promise1 = new Promise((resolve, reject) => {
       this.http.get(url).subscribe((data: any) => {
         this.token = data.access_token;
@@ -37,11 +40,11 @@ export class SpotifyService {
 
   }
 
-/*
- * checkToken()
- * As the Spotify token lasts 1 hour (3600 sec) I will check the secs It has been
- * and if it is going to expire I will get a new one
- */
+  /*
+   * checkToken()
+   * As the Spotify token lasts 1 hour (3600 sec) I will check the secs It has been
+   * and if it is going to expire I will get a new one
+   */
   checkToken() {
     const actualTime: any = new Date();
     const secs = new Date(actualTime - this.tokenDate).getTime();
