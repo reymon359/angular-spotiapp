@@ -24,7 +24,7 @@ export class SpotifyService {
         this.token = data.access_token;
         if (this.token !== '') {
           this.tokenDate = new Date();
-          console.log('token got');
+          // console.log('token got');
           resolve();
         } else {
           reject();
@@ -37,13 +37,17 @@ export class SpotifyService {
 
   }
 
+/*
+ * checkToken()
+ * As the Spotify token lasts 1 hour (3600 sec) I will check the secs It has been
+ * and if it is going to expire I will get a new one
+ */
   checkToken() {
     const actualTime: any = new Date();
     const secs = new Date(actualTime - this.tokenDate).getTime();
-    console.log(secs);
-
-    if (secs > 3550000) {
-      console.log('lets get token');
+    // console.log(secs);
+    if (secs >= 3550000) { // In milliseconds
+      // console.log('lets get token');
       this.getToken();
     }
   }
@@ -67,7 +71,6 @@ export class SpotifyService {
   }
 
   getArtists(term: string) {
-    console.log(this.token);
     return this.getQuery(`search?q=${term}&type=artist&limit=15`)
       .pipe(map(data => data['artists'].items));
   }
