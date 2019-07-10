@@ -7,10 +7,10 @@
 </div>
 <app-loading *ngIf="loading" class="m-5"></app-loading>
 
-<div *ngIf="error" class="alert alert-danger animated fadeIn ">
+<div class="alert alert-danger animated fadeIn ">
     <h3>Error</h3>
     <p>{{ errorMessage}}</p>
     <hr>
-    <div class="button"></div>
+    <button (click)="getNewReleases()" class="btn btn-success">Lets try again</button>
 </div>
 <app-cards *ngIf="!loading" class="fadeIn" [items]="newReleases"></app-cards>
