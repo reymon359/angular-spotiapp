@@ -17,7 +17,7 @@ export class SpotifyService {
 
 
   getToken() {
-
+    console.log('enters get token');
 
     const clientId = 'YOUR_CLIENTID';
     const clientSecret = 'YOUR_CLIENTSECRET';
@@ -28,7 +28,7 @@ export class SpotifyService {
         this.token = data.access_token;
         if (this.token !== '') {
           this.tokenDate = new Date();
-          // console.log('token got');
+          console.log('token got');
           resolve();
         } else {
           reject();
@@ -48,9 +48,10 @@ export class SpotifyService {
    */
   checkToken() {
     console.log('enters check token');
-
+    
     const actualTime: any = new Date();
     const secs = new Date(actualTime - this.tokenDate).getTime();
+    console.log(secs);
     // console.log(secs);
     if (secs >= 3550000) { // In milliseconds
       // console.log('lets get token');
