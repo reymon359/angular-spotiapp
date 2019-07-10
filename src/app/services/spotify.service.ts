@@ -18,8 +18,9 @@ export class SpotifyService {
 
   getToken() {
 
-    const clientId = 'YOUR_CLIENT_ID';
-    const clientSecret = 'YOUR_SECRET_ID';
+
+    const clientId = 'YOUR_CLIENTID';
+    const clientSecret = 'YOUR_CLIENTSECRET';
 
     const url = `https://reymon359-spotify-token.herokuapp.com/spotify/${clientId}/${clientSecret}`;
     const promise1 = new Promise((resolve, reject) => {
@@ -46,6 +47,8 @@ export class SpotifyService {
    * and if it is going to expire I will get a new one
    */
   checkToken() {
+    console.log('enters check token');
+
     const actualTime: any = new Date();
     const secs = new Date(actualTime - this.tokenDate).getTime();
     // console.log(secs);

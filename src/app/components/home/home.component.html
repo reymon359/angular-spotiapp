@@ -1,6 +1,6 @@
 <div class="container text-center">
 
-    <h1 class="display-4 text-white"><img src="/assets/img/banner-ico.png" width="100" height="100" alt=""> Spotify Releases</h1>
+    <h1 class="display-4 text-white"><img src="./assets/img/banner-ico.png" width="100" height="100" alt=""> Spotify Releases</h1>
     <p class="lead text-success"><span class="text-white">Here are the new releases on Spotify.</span> Go listen them! </p>
     <button *ngIf="spotifyService.firstRequest" (click)="getNewReleases()" type="button" class="btn btn-success">Give me new music !</button>
 </div>
@@ -8,6 +8,8 @@
 <div *ngIf="error" class="alert alert-danger animated fadeIn ">
     <h3>Error</h3>
     <p>{{ errorMessage}}</p>
+    <hr>
+    <div class="button"></div>
 </div>
 
 <app-cards class="fadeIn" [items]="newReleases"></app-cards>
