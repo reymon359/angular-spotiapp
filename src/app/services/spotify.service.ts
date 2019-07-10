@@ -17,8 +17,7 @@ export class SpotifyService {
 
 
   getToken() {
-    console.log('enters get token');
-
+ 
     const clientId = 'YOUR_CLIENTID';
     const clientSecret = 'YOUR_CLIENTSECRET';
 
@@ -47,14 +46,9 @@ export class SpotifyService {
    * and if it is going to expire I will get a new one
    */
   checkToken() {
-    console.log('enters check token');
-    
     const actualTime: any = new Date();
     const secs = new Date(actualTime - this.tokenDate).getTime();
-    console.log(secs);
-    // console.log(secs);
     if (secs >= 3550000) { // In milliseconds
-      // console.log('lets get token');
       this.getToken();
     }
   }
@@ -62,8 +56,6 @@ export class SpotifyService {
 
   getQuery(query: string) {
     this.checkToken();
-
-
     const url = `https://api.spotify.com/v1/${query}`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`
