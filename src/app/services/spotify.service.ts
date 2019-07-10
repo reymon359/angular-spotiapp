@@ -28,7 +28,7 @@ export class SpotifyService {
         this.token = data.access_token;
         if (this.token !== '') {
           this.tokenDate = new Date();
-          console.log('token got');
+          // console.log('token got');
           resolve();
         } else {
           reject();

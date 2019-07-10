@@ -9,7 +9,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class HomeComponent implements OnInit {
 
   newReleases: any[] = [];
-  loading = false;
+  loading: boolean;
 
   error: boolean;
   errorMessage: string;
@@ -18,26 +18,33 @@ export class HomeComponent implements OnInit {
     // this.loading = true;
     this.error = false;
     this.spotifyService.checkToken();
-    if (!this.spotifyService.firstRequest ) {console.log('geting new'); this.getNewReleases();  }
- 
+    // if (!this.spotifyService.firstRequest) { 
+    //   console.log('geting new');
+    //    this.getNewReleases(); }
 
-  }
-
-  getNewReleases(){
-    this.spotifyService.firstRequest = false;
-    this.spotifyService.getNewReleases()
-    .subscribe((data: any) => {
-      this.newReleases = data;
-      this.loading = false;
-    }, (serviceError) => {
-      this.loading = false;
-
-      this.error = true;
-      this.errorMessage = serviceError.error.error.message;
-    });
   }
 
   ngOnInit() {
+    this.getNewReleases();
+
   }
+  getNewReleases() {
+    this.loading = true;
+    this.spotifyService.firstRequest = false;
+    setTimeout(() => {
+
+      this.spotifyService.getNewReleases()
+        .subscribe((data: any) => {
+          this.newReleases = data;
+          this.loading = false;
+        }, (serviceError) => {
+          this.loading = false;
+
+          this.error = true;
+          this.errorMessage = serviceError.error.error.message;
+        });
+    }, Math.round(Math.random() * 2500) + 1500);
+  }
+
 
 }
