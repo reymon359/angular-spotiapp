@@ -7,7 +7,7 @@
 </div>
 <app-loading *ngIf="loading" class="m-5"></app-loading>
 
-<div class="alert alert-danger animated fadeIn ">
+<div *ngIf="error" class="alert alert-danger animated fadeIn ">
     <h3>Error</h3>
     <p>{{ errorMessage}}</p>
     <hr>
