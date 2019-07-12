@@ -37,13 +37,14 @@ export class HomeComponent implements OnInit {
         .subscribe((data: any) => {
           this.newReleases = data;
           this.loading = false;
+          this.error = false;
         }, (serviceError) => {
           this.loading = false;
 
           this.error = true;
           this.errorMessage = serviceError.error.error.message;
         });
-    }, Math.round(Math.random() * 2500) + 1500);
+    }, Math.round(Math.random() * 3500) + 1500);
   }
 
 
