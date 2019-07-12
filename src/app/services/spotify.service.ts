@@ -17,7 +17,7 @@ export class SpotifyService {
 
 
   getToken() {
-   
+ 
     const clientId = 'YOUR_CLIENTID';
     const clientSecret = 'YOUR_CLIENTSECRET';
 
